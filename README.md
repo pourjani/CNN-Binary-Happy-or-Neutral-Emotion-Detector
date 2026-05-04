@@ -16,7 +16,22 @@ The model is trained on the **MUXSPACE Facial Expressions** dataset.
 - **Format:** Grayscale images with corresponding labels in `legend.csv`.
 
 ---
+## 📈 Model Performance & Training Logs
+The model was trained for **15 Epochs**. Below is the detailed performance log extracted from the training process:
 
+| Epoch | Loss | Accuracy | Val Loss | Val Accuracy | Time/Step |
+|-------|------|----------|----------|--------------|-----------|
+| 1/15  | 0.4721 | 76.11% | 0.3768 | 82.69% | 31s 47ms |
+| 5/15  | 0.2393 | 89.88% | 0.2735 | 88.10% | 33s 53ms |
+| 10/15 | 0.1724 | 92.89% | 0.2726 | 90.05% | 33s 52ms |
+| 15/15 | 0.1170 | **95.15%** | 0.2760 | **90.21%** | 32s 51ms |
+
+### 🔑 Key Takeaways:
+- **Final Validation Accuracy:** ~90.2%
+- **Inference Speed:** Fast execution (~32s per epoch on a standard CPU/GPU setup).
+- **Stability:** The model shows consistent improvement, reaching over 90% accuracy within just 10 epochs.
+
+---
 ## 🎯 Motivation & Challenges
 
 ### Why Binary Classification?
