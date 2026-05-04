@@ -33,6 +33,15 @@ Due to these reasons, the project focuses on a simplified **binary classificatio
 - Reduced noise impact through rigorous label cleaning and normalization
 
 ---
+## Why Softmax Activation?
+
+Although this is a binary classification task, we use a **softmax** activation with **two output neurons** instead of a single neuron with sigmoid. This choice aligns with one-hot encoded labels and categorical cross-entropy loss.
+
+Softmax produces a normalized probability distribution over classes, is more flexible for potential multi-class extension, and often provides clearer gradient signals compared to sigmoid in such setups.
+
+Using softmax + categorical_crossentropy is a common best practice when labels are one-hot encoded, even for binary tasks.
+
+---
 
 ## Data Preparation & Processing
 
