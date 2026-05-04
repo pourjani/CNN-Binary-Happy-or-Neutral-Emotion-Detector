@@ -1,3 +1,5 @@
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.14-orange)
 # Facial Emotion Recognition (Happy vs Neutral)
 
 ## 📌 Project Overview
