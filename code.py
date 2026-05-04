@@ -108,7 +108,7 @@ model.compile(
     loss='categorical_crossentropy',
     metrics=['accuracy']
 )
-model.fit(
+history = model.fit(
     X_train,
     y_train,
     epochs=15,
@@ -174,3 +174,28 @@ while True:
 # Release webcam and close window
 cap.release()
 cv2.destroyAllWindows()
+
+
+
+import matplotlib.pyplot as plt
+
+# Plot Accuracy
+plt.figure(figsize=(10,5))
+plt.plot(history.history['accuracy'], label='Train Accuracy')
+plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+plt.title('Accuracy Curve')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Plot Loss
+plt.figure(figsize=(10,5))
+plt.plot(history.history['loss'], label='Train Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.title('Loss Curve')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend()
+plt.grid(True)
