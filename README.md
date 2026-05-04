@@ -40,13 +40,53 @@ The model was trained for **15 Epochs**. Below is the detailed performance log e
 - **Stability:** The model shows consistent improvement, reaching over 90% accuracy within just 10 epochs.
 
 ---
+## ❓ Why Only Two Emotions (Happy vs Neutral)?
 
-## 🎯 Motivation
-The project was designed as a **Binary Classification** system to ensure high reliability. By focusing on two primary classes (Happy vs. Neutral), we achieved:
-- **Higher Precision:** Reduced the noise caused by similar-looking subtle emotions.
-- **Robustness:** Better performance in real-time scenarios with varying lighting conditions.
+Although the original dataset includes multiple emotion categories, this project intentionally focuses on **only two emotional states: Happy and Neutral**.  
+This decision was made based on both **data-driven analysis** and **practical engineering considerations**, not simplification.
+
+### Key Reasons:
+
+### 1️⃣ Dataset Size & Class Distribution
+The dataset contains approximately 13,000 images in total. While this may seem sufficient, it is **relatively small for reliable multi-class deep learning**, especially when some emotion classes contain very few samples.
+
+In contrast, **Happy** and **Neutral** are the two most frequent and well-represented classes, providing enough data to train a stable and generalizable model.
 
 ---
+
+### 2️⃣ Severe Class Imbalance in Other Emotions
+Other emotions such as *anger, fear, sadness,* and *disgust* are significantly underrepresented. Training a multi-class classifier under these conditions often leads to:
+- Biased predictions toward majority classes  
+- Poor recall for minority emotions  
+- Unstable training and misleading accuracy metrics  
+
+Restricting the problem to two dominant classes helps avoid these pitfalls.
+
+---
+
+### 3️⃣ Label Noise & Annotation Inconsistency
+The dataset contains inconsistencies such as:
+- Variations in label naming (e.g., `happy`, `HAPPINESS`)
+- Ambiguous facial expressions that overlap between emotional categories
+
+By narrowing the task to Happy vs Neutral, label ambiguity is significantly reduced, resulting in **cleaner supervision and more reliable learning**.
+
+---
+
+### 4️⃣ Real‑World Practicality
+In many real-world applications (e.g., user engagement analysis, attention detection, basic mood estimation), distinguishing between:
+- **Neutral (no strong emotion)** and  
+- **Happy (positive emotion)**  
+
+is often sufficient and more robust than attempting to classify subtle emotional differences.
+
+---
+
+### ✅ Final Conclusion
+Focusing on a **binary classification problem** allows the model to:
+- Achieve higher accuracy and stability  
+- Generalize better to unseen data  
+- Operate efficiently in real‑time environments  
 
 ## 🧠 Model Architecture
 A custom CNN was built from scratch. Transfer learning was avoided to:
