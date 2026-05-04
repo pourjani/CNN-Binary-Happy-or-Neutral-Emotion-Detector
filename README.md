@@ -82,11 +82,6 @@ is often sufficient and more robust than attempting to classify subtle emotional
 
 ---
 
-### ✅ Final Conclusion
-Focusing on a **binary classification problem** allows the model to:
-- Achieve higher accuracy and stability  
-- Generalize better to unseen data  
-- Operate efficiently in real‑time environments  
 
 ## 🧠 Model Architecture
 A custom CNN was built from scratch. Transfer learning was avoided to:
