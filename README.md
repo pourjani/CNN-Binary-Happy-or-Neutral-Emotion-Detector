@@ -1,79 +1,51 @@
-# Facial Emotion Recognition (Happy vs Neutral) - Binary Classification
+# Facial Emotion Recognition (Happy vs Neutral)
 
-## Project Overview
-
-This project implements a deep learning-based facial emotion recognition system that classifies facial images into two primary emotional states: **Happy** and **Neutral**. The model architecture is a lightweight Convolutional Neural Network (CNN) trained from scratch on a curated dataset of grayscale 48x48 pixel face images.
-
----
-
-## Dataset Source
-
-The dataset used in this project is sourced from the publicly available repository:
-
-[https://github.com/muxspace/facial_expressions](https://github.com/muxspace/facial_expressions)
-
-This dataset contains labeled facial images along with metadata that annotates each image with the corresponding emotion.
+## 📌 Project Overview
+This project implements a deep learning system designed to classify facial expressions into two primary categories: **Happy** and **Neutral**. Using a custom-built Convolutional Neural Network (CNN), the model processes 48x48 grayscale images to provide fast and efficient emotion detection.
 
 ---
 
-## Motivation & Challenges
+## 📊 Dataset Details
+The model is trained on the **MUXSPACE Facial Expressions** dataset.
+- **Source:** [GitHub - muxspace/facial_expressions](https://github.com/muxspace/facial_expressions)
+- **Total Samples:** Approximately 13,690 images.
+- **Format:** Grayscale images with corresponding labels in `legend.csv`.
+
+---
+
+## 🎯 Motivation & Challenges
 
 ### Why Binary Classification?
+While the original dataset contains multiple emotion labels, this project focuses on **Binary Classification** (Happy vs. Neutral) for the following reasons:
 
-The original dataset includes multiple emotional categories. However, a thorough inspection revealed several challenges:
+1. **Dataset Size Constraints:** Although the dataset has ~13k images, this is considered **relatively small** for robust multi-class deep learning (which typically requires tens of thousands of samples per class).
+2. **Class Imbalance:** A significant majority of the data is concentrated in the "Happy" and "Neutral" categories. Other emotions (like anger or disgust) have too few samples for the model to learn effectively.
+3. **Label Noise:** The dataset contained inconsistent labeling (e.g., `happy` vs `HAPPINESS`). By focusing on two classes, we could perform rigorous data cleaning to ensure high model reliability.
 
-- **Limited Dataset Size:** The dataset size is relatively small for robust multi-class deep learning classification.  
-- **Label Imbalance:** The majority of samples belong predominantly to two classes: **Neutral** and **Happy**, with very few images representing other emotions.  
-- **Label Noise and Inconsistency:** Variations in emotion labels (e.g., `happy`, `HAPPINESS`, `happy` in different letter cases) introduce noise and ambiguity.
-
-Due to these reasons, the project focuses on a simplified **binary classification** task distinguishing between Happy and Neutral expressions. This approach enables:
-
-- More effective training on the available data  
-- Better class balance to avoid bias  
-- Reduced noise impact through rigorous label cleaning and normalization
-
----
-## Why Softmax Activation?
-
-Although this is a binary classification task, we use a **softmax** activation with **two output neurons** instead of a single neuron with sigmoid. This choice aligns with one-hot encoded labels and categorical cross-entropy loss.
-
-Softmax produces a normalized probability distribution over classes, is more flexible for potential multi-class extension, and often provides clearer gradient signals compared to sigmoid in such setups.
-
-Using softmax + categorical_crossentropy is a common best practice when labels are one-hot encoded, even for binary tasks.
+### Why Softmax instead of Sigmoid?
+Despite being a binary task, the model uses **Softmax activation with two output neurons**. This approach:
+- Allows the model to output a clear probability distribution across the two classes.
+- Makes the architecture easily scalable for future multi-class expansions.
+- Works seamlessly with One-Hot encoding and Categorical Cross-Entropy loss.
 
 ---
 
-## Data Preparation & Processing
+## 🛠️ Data Preparation & Cleaning
+To ensure high accuracy, the following preprocessing steps were taken:
+1. **Label Normalization:** Standardized all variations of labels (e.g., merging "happiness" into "happy").
+2. **Filtering:** Extracted only the "Happy" and "Neutral" samples.
+3. **Image Processing:** Images were converted to grayscale, resized to 48x48 pixels, and normalized to a [0, 1] range.
 
-1. **Label Normalization:** Emotion labels were standardized (lowercased, synonymous labels merged — e.g., "happiness" combined into "happy").  
-2. **Filtering:** Only samples labeled as "happy" and "neutral" were retained.  
-3. **Image Preprocessing:** All images were converted to grayscale, resized to 48x48 pixels, and normalized to the [0,1] range for pixel intensities.
-
-Resulting dataset size after cleaning:
-
-| Class   | Number of Samples | Percentage of Total |
-|---------|-------------------|--------------------|
-| Neutral | 6,868             | 54.7%              |
-| Happy   | 5,696             | 45.3%              |
-
----
-
-## Model Architecture
-
-A custom lightweight CNN was designed to effectively learn features from the relatively small dataset. Transfer learning with large pre-trained models was intentionally avoided due to:
-
-- Dataset size limitation — insufficient data to fine-tune deep architectures without overfitting  
-- Noise and imbalance which complicate transfer learning stability
+**Final Dataset Distribution:**
+| Emotion | Count | Percentage |
+|---------|-------|------------|
+| Neutral | 6,868 | 54.7%      |
+| Happy   | 5,696 | 45.3%      |
 
 ---
 
-## Installation
+## 🧠 Model Architecture
+A custom, lightweight CNN was designed to extract features without the overhead of massive architectures. 
+- **Transfer Learning Avoidance:** Large pre-trained models (like VGG or ResNet) were intentionally avoided to prevent **overfitting**, as the current dataset size is insufficient to fine-tune hundreds of millions of parameters effectively.
 
-This project requires the following Python packages:
-
-- `numpy`  
-- `pandas`  
-- `tensorflow` (or `tensorflow-gpu`)  
-- `opencv-python`  
-- `scikit-learn`  
-
+---
